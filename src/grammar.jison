@@ -17,6 +17,8 @@
 \s+               /* skip whitespace */
 \#[^\n]*          /* skip comments */
 "participant"     return 'participant';
+"start loop"      return 'start loop';
+"end loop"        return 'end loop';
 "left of"         return 'left_of';
 "right of"        return 'right_of';
 "over"            return 'over';
@@ -57,6 +59,8 @@ statement
 	| signal               { yy.addSignal($1); }
 	| note_statement       { yy.addSignal($1); }
 	| 'title' message      { yy.setTitle($2);  }
+	| 'start loop'         { yy.startLop($1);  }
+	| 'end loop'           { yy.endLop($1);  }
 	;
 
 note_statement
